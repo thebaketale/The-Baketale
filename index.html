@@ -169,7 +169,7 @@ footer{background:var(--cocoa);color:var(--oat);text-align:center;padding:28px 2
 <footer>© 2026 The Baketale · Home-based bakery, West Bengal, India · <a href="contact.html">Contact us</a></footer>
 
 <script>
-// EDIT THIS LIST: change names, descriptions and emoji to your real cakes.
+// EDIT THIS LIST: change names, prices, emoji to your real cakes.
 const cakes = [
   {n:"Chocolate", p:350, e:"🍫", c:"#e8d3bd", img:"chocolate.jpg"},
   {n:"Vanilla", p:330, e:"🤍", c:"#f6efe0", img:"vanilla.jpg"},
@@ -177,22 +177,33 @@ const cakes = [
   {n:"Pineapple", p:330, e:"🍍", c:"#f3e6a8", img:"pineapple.jpg"},
   {n:"Mango", p:330, e:"🥭", c:"#f7dca0", img:"mango.jpg"},
   {n:"Strawberry", p:330, e:"🍓", c:"#f0cfc9", img:"strawberry.jpg"},
+  {n:"Rasmalai", p:350, e:"🍮", c:"#f3e6c4", img:"rasmalai.jpg"},
   {n:"Oreo", p:350, e:"🍪", c:"#e0d6d0", img:"oreo.jpg"},
   {n:"Black Forest", p:370, e:"🍒", c:"#e5d6d0", img:"black-forest.jpg"},
   {n:"White Forest", p:380, e:"🤍", c:"#eef0e6", img:"white-forest.jpg"},
   {n:"Red Velvet", p:400, e:"🍰", c:"#f0cfc9", img:"red-velvet.jpg"},
-  {n:"Truffle", p:420, e:"🍫", c:"#dcc3ad", img:"truffle.jpg"}
-  {n:"Brownie", p:55, e:"🍫", c:"#4B2E1F", img:"brownie.jpg"},
-  ];
+  {n:"Truffle", p:420, e:"🍫", c:"#dcc3ad", img:"truffle.jpg"},
+  {n:"Brownie", p:55, e:"🍫", c:"#4B2E1F", img:"brownie.jpg"}
+];
+
 const looks={
- "Chocolate":["#5a3a2a","#7b4f38","choco"],"Vanilla":["#f1dca8","#fffaf0","sprinkle"],
- "Butterscotch":["#e0a85a","#f3d28f","praline"],"Pineapple":["#f5e3a0","#fffaf0","pine"],
- "Mango":["#f6c35a","#fff1c9","mango"],"Strawberry":["#f2b8bd","#fff0f1","straw"],
- "Rasmalai":["#f3e6c4","#fff8e6","pista"],"Oreo":["#3b2a24","#f5efe6","oreo"],
- "Black Forest":["#4a2e24","#fffaf0","cherry"],"White Forest":["#f1e6d0","#ffffff","shave"],
- "Red Velvet":["#a8252f","#fffaf0","crumb"],"Truffle":["#3c2519","#5a3a2a","choco"]};
+ "Chocolate":["#5a3a2a","#7b4f38","choco"],
+ "Vanilla":["#f1dca8","#fffaf0","sprinkle"],
+ "Butterscotch":["#e0a85a","#f3d28f","praline"],
+ "Pineapple":["#f5e3a0","#fffaf0","pine"],
+ "Mango":["#f6c35a","#fff1c9","mango"],
+ "Strawberry":["#f2b8bd","#fff0f1","straw"],
+ "Rasmalai":["#f3e6c4","#fff8e6","pista"],
+ "Oreo":["#3b2a24","#f5efe6","oreo"],
+ "Black Forest":["#4a2e24","#fffaf0","cherry"],
+ "White Forest":["#f1e6d0","#ffffff","shave"],
+ "Red Velvet":["#a8252f","#fffaf0","crumb"],
+ "Truffle":["#3c2519","#5a3a2a","choco"],
+ "Brownie":["#4B2E1F","#6b4430","choco"]
+};
+
 function art(k){
-  const [sp,fr,t]=looks[k.n], xs=[72,100,128]; let top='';
+  const [sp,fr,t]=looks[k.n]||["#e8d3bd","#fffaf0",""], xs=[72,100,128]; let top='';
   if(t==='cherry') top=xs.map(x=>`<circle cx="${x}" cy="45" r="7" fill="#b3202a"/><path d="M${x} 38q4-8 9-9" stroke="#4f6746" fill="none" stroke-width="2"/>`).join('');
   if(t==='straw') top=xs.map(x=>`<path d="M${x-8} 40q8-4 16 0q-2 12-8 14q-6-2-8-14z" fill="#d8344a"/><path d="M${x-5} 39l5-5l5 5z" fill="#5f8a4a"/>`).join('');
   if(t==='oreo') top=xs.map(x=>`<circle cx="${x}" cy="44" r="9" fill="#2b1d18"/><rect x="${x-6}" y="43" width="12" height="2" fill="#f5efe6"/>`).join('');
@@ -212,7 +223,9 @@ function art(k){
    <path d="M52 64v12a5 5 0 0 0 10 0V64zM84 64v18a5 5 0 0 0 10 0V64zM118 64v10a5 5 0 0 0 10 0V64zM140 64v15a5 5 0 0 0 9 0V64z" fill="${fr}"/>
    ${top}</svg>`;
 }
+
 const grid=document.getElementById('grid'),empty=document.getElementById('empty'),q=document.getElementById('q');
+
 function render(list){
   grid.innerHTML=list.map(k=>`
     <article class="cake">
@@ -224,11 +237,13 @@ function render(list){
     </article>`).join('');
   empty.style.display=list.length?'none':'block';
 }
+
 q.addEventListener('input',()=>{
   const t=q.value.trim().toLowerCase();
   render(cakes.filter(k=>(k.n+' cake').toLowerCase().includes(t)));
   if(t) document.getElementById('cakes').scrollIntoView();
 });
+
 render(cakes);
 </script>
 </body>
