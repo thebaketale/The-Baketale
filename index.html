@@ -230,7 +230,7 @@ function render(list){
   grid.innerHTML=list.map(k=>`
     <article class="cake">
       <div class="pic" style="background:${k.c}">${art(k)}
-        <img src="images/${k.img}" alt="${k.n} cake" loading="lazy" onerror="this.remove()"></div>
+        <img src="${k.img}" alt="${k.n} cake" loading="lazy" onerror="this.remove()"></div>
       <div class="body"><h3>${k.n} Cake</h3>
       <p class="price">₹${k.p} <small>for 1 pound</small></p>
       <a href="https://wa.me/916291858811?text=${encodeURIComponent('Hi The Baketale, I want to order a '+k.n+' cake (1 pound, Rs '+k.p+').')}" target="_blank" rel="noopener">Order this</a></div>
