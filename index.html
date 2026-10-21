@@ -234,8 +234,8 @@ function render(list){
       <div class="pic" style="background:${k.c}">${art(k)}
         <img src="${k.img}" alt="${k.n} cake" loading="lazy" onerror="this.remove()"></div>
       <div class="body"><h3>${k.n} Cake</h3>
-      <p class="price">₹${k.p} <small>for 1 pound</small></p>
-      <a href="https://wa.me/916291858811?text=${encodeURIComponent('Hi The Baketale, I want to order a '+k.n+' cake (1 pound, Rs '+k.p+').')}" target="_blank" rel="noopener">Order this</a></div>
+<p class="price">₹${k.p} <small>for 1 ${k.unit||'pound'}</small></p>
+<a href="https://wa.me/916291858811?text=${encodeURIComponent('Hi The Baketale, I want to order a '+k.n+' cake (1 pound, Rs '+k.p+').')}" target="_blank" rel="noopener">Order this</a></div>
     </article>`).join('');
   empty.style.display=list.length?'none':'block';
 }
